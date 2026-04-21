@@ -1,8 +1,13 @@
 {{ config(materialized='incremental') }}
 
 
-SELECT * FROM  {{ source('staging', 'hosts') }}
+SELECT *, CURRENT_TIMESTAMP() AS loaded_at
+ FROM  {{ source('staging', 'hosts') }}
 
 {% if is_incremental() %}
     WHERE CREATED_AT > (SELECT COALESCE(MAX(CREATED_AT), '1900-01-01') FROM {{ this }})
 {% endif %}
+
+
+
+{# select * from {{ref('bronze_hosts')}} #}
