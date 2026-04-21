@@ -15,3 +15,8 @@ SELECT
     CREATED_AT AS CREATED_AT
 FROM 
     {{ ref('bronze_hosts') }}
+
+
+
+{# select * from {{ref('silver_hosts')}}
+limit 30 #}
