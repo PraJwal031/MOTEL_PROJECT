@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: silver_listings
+    description: "Cleaned listings data with enforced quality rules"
+    columns:
+      - name: listing_id
+        tests:
+          - unique
+          - not_null
+
+      - name: price_per_night
+        tests:
+          - not_null
+
+      - name: room_type
+        tests:
+          - accepted_values:
+              values: ['Entire home/apt', 'Private room', 'Shared room', 'Unknown']
