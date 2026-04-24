@@ -6,7 +6,7 @@ from datetime import datetime
 
 def generate_motel_data():
     fake = Faker()
-    bucket = os.getenv("sfbucketpro")
+    bucket = os.getenv("S3_BUCKET_NAME")
     s3 = boto3.client('s3')
     
     # Unified timestamps for the daily batch
@@ -69,7 +69,7 @@ def generate_motel_data():
 
     for name, data in tables.items():
         df = pd.DataFrame(data)
-        file_key = f"raw/{name}/{name}_{timestamp}.csv"
+        file_key = f"Source_DATA1/raw/{name}/{name}_{timestamp}.csv"
         s3.put_object(
             Bucket=bucket,
             Key=file_key,
