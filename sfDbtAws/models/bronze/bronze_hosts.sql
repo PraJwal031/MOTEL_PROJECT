@@ -10,4 +10,5 @@ SELECT *, CURRENT_TIMESTAMP() AS loaded_at
 
 
 
-{# select * from {{ref('bronze_hosts')}} #}
+{# select * from {{ref('bronze_hosts')}}
+limit 10 #}
