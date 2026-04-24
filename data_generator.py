@@ -6,7 +6,7 @@ from datetime import datetime
 
 def generate_motel_data():
     fake = Faker()
-    bucket = os.getenv("S3_BUCKET_NAME")
+    bucket = os.getenv("sfbucketpro")
     s3 = boto3.client('s3')
     
     # Unified timestamps for the daily batch
