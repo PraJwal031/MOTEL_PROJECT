@@ -69,7 +69,7 @@ def generate_motel_data():
 
     for name, data in tables.items():
         df = pd.DataFrame(data)
-        file_key = f"Source_DATA1/raw/{name}/{name}_{timestamp}.csv"
+        file_key = f"{name}_{timestamp}.csv"
         s3.put_object(
             Bucket=bucket,
             Key=file_key,
