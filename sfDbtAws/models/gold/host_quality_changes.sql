@@ -19,9 +19,9 @@ SELECT
 FROM {{ ref('dim_hosts_scd2') }}
 WHERE LAG(RESPONSE_RATE) OVER (PARTITION BY HOST_ID ORDER BY dbt_valid_from) IS NOT NULL
 ORDER BY change_date DESC, HOST_ID
+ #}
 
-
-{{ config(materialized='view') }} #}
+{{ config(materialized='view') }}
 
 WITH ranked_hosts AS (
   SELECT 
