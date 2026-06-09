@@ -18,4 +18,8 @@ SELECT
 FROM 
     {{ ref('bronze_bookings') }}
 
-    
+
+
+{# select * from {{ref('silver_bookings')}}
+limit 10
+     #}

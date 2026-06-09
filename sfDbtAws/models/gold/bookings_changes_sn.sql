@@ -1,5 +1,27 @@
 {{ config(materialized='table') }}
 
+
+{# The model shows: latest captured snapshot version not real-time source data. 
+If source changes after snapshot execution:
+model will reflect changes only after next snapshot run #}
+
+{# Business Scenario
+
+In our medical domain project, patient and claim-related data was continuously updated from multiple source systems and APIs.
+
+Examples of changing data:
+
+patient insurance status updated
+claim amount corrected
+diagnosis codes modified
+treatment status changed
+billing adjustments applied
+
+Business required:
+
+1. Latest accurate data for reporting
+2. Historical tracking of all important changes #}
+
 WITH current_bookings AS (
 
     SELECT

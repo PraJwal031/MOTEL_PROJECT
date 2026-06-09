@@ -1,5 +1,30 @@
 {{ config(materialized='incremental') }}
 
+
+{# Medical Domain Scenario for Incremental Model
+In our medical domain project, data was continuously ingested from multiple hospital systems, APIs, and insurance platforms into Snowflake.
+One of the reporting requirements was to build: daily claim revenue reporting
+
+which included:
+total approved claims
+billing amount
+insurance charges
+adjustments
+net revenue
+
+Problem
+The claim tables were growing daily with large transactional data.
+If we performed full refresh every run: entire historical claim data would be recalculated repeatedly 
+
+which increased:
+pipeline runtime
+Snowflake compute cost
+unnecessary processing
+
+Solution
+We implemented: dbt incremental models to process only newly arrived claim records. #}
+
+
 WITH bookings_confirmed AS (
 
     SELECT 
